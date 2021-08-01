@@ -1,4 +1,4 @@
 export default interface IGalleryItem {
-    url: string;
-    position: number;
+  url: string;
+  position: number;
 }

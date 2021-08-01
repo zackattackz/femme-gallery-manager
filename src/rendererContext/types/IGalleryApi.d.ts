@@ -1,8 +1,6 @@
-import IGalleryItem from "./IGalleryItem";
+import IGalleryItem from './IGalleryItem';
 
 export default interface IGalleryApi {
-    listGalleryItems(returnSorted?: boolean): Promise<IGalleryItem[]>;
-    // uploadGalleryItem()
+  listGalleryItems(returnSorted?: boolean): Promise<IGalleryItem[]>;
+  // uploadGalleryItem()
 }
-
-
