@@ -1,0 +1,56 @@
+{
+  "name": "femme-gallery-manager",
+  "productName": "femme-gallery-manager",
+  "version": "1.0.0",
+  "description": "A tool to manage the femme photo gallery.",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "Zachary Hanham",
+    "email": "z.hanham00@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.59",
+    "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.59",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
+    "@electron-forge/maker-zip": "^6.0.0-beta.59",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.59",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "@vercel/webpack-asset-relocator-loader": "^1.6.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.2.0",
+    "dotenv-webpack": "^7.0.3",
+    "electron": "13.1.7",
+    "electron-devtools-installer": "^3.2.0",
+    "eslint": "^7.31.0",
+    "eslint-plugin-import": "^2.23.4",
+    "fork-ts-checker-webpack-plugin": "^6.2.13",
+    "node-loader": "^2.0.0",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.4",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@azure/storage-blob": "^12.6.0",
+    "cpy": "^8.1.2",
+    "dotenv": "^10.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
