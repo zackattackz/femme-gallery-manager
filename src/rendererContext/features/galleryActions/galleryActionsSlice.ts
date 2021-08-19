@@ -23,6 +23,7 @@ export const enum LoadingStatuses {
 export interface GalleryActionsState {
   cachedItems: BlobNameToItemMap;
   currentItems: BlobNameToItemMap;
+  status: LoadingStatuses;
 }
 
 const testItems: BlobNameToItemMap = {
@@ -54,6 +55,7 @@ const windowWithContextBridgeApi: WindowWithContextBridgeApi = window as WindowW
 const initialState: GalleryActionsState = {
   cachedItems: {},
   currentItems: {},
+  status: LoadingStatuses.IsInitial,
 };
 
 //The function below is called a thunk and allows us to perform async logic. It
@@ -116,13 +118,15 @@ export const galleryActionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(refreshState.pending, (state) => {
-        console.log('loading');
+        state.status = LoadingStatuses.IsLoading;
       })
       .addCase(refreshState.fulfilled, (state, action) => {
         state.currentItems = action.payload;
         state.cachedItems = action.payload;
+        state.status = LoadingStatuses.IsSuccess;
       })
       .addCase(refreshState.rejected, (state, action) => {
+        state.status = LoadingStatuses.IsError;
         throw action.error;
       });
   },
@@ -136,6 +140,7 @@ export const {renameItem, setPosition, setIsHero, deleteItem, repositionItems} =
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCurrentItems = (state: RootState) => state.galleryActions.currentItems;
 
+export const selectCurrentStatus = (state: RootState) => state.galleryActions.status;
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 // export const incrementIfOdd =

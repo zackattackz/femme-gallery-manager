@@ -1,8 +1,20 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Button, FlexboxGrid, Icon, IconButton, Input, List, Modal, Panel} from 'rsuite';
+import {
+  Button,
+  FlexboxGrid,
+  Icon,
+  IconButton,
+  Input,
+  List,
+  Modal,
+  Panel,
+  Grid,
+  Row,
+  Col,
+} from 'rsuite';
 import {ActionKinds} from 'src/types/GalleryActions';
-import {GalleryItem} from 'src/types/GalleryItems';
+import {GalleryItem, isLocalGalleryItem} from 'src/types/GalleryItems';
 import {deleteItem, renameItem} from './galleryActionsSlice';
 
 interface GalleryItemActionsProps {
@@ -22,26 +34,31 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
     setShown(false);
   }
 
+  const itemImage = isLocalGalleryItem(props.item) ? null : (
+    <img style={{width: '300px'}} src={props.item.url} />
+  );
+
   return (
-    <FlexboxGrid>
-      <FlexboxGrid.Item colspan={2}>
-        <IconButton
-          style={{display: 'block', margin: '0 auto'}}
-          size={'sm'}
-          icon={<Icon icon="up" />}
-          ripple={false}
-        />
-        <Input type={'text'}></Input>
-        <IconButton
-          style={{display: 'block', margin: '0 auto'}}
-          size={'sm'}
-          icon={<Icon icon="down" />}
-          ripple={false}
-        />
-      </FlexboxGrid.Item>
-      <FlexboxGrid.Item style={{height: '100%'}} colspan={22}>
-        <Panel header={props.item.displayName} collapsible bordered>
-          {/* <Button
+    <Grid fluid>
+      <Row>
+        <Col sm={1}>
+          <Row>
+            <Button color={'cyan'} block size={'sm'} ripple={false}>
+              <Icon icon="up" />
+            </Button>
+          </Row>
+          <Row>
+            <Input type={'text'}></Input>
+          </Row>
+          <Row>
+            <Button color={'cyan'} block size={'sm'} ripple={false}>
+              <Icon icon="down" />
+            </Button>
+          </Row>
+        </Col>
+        <Col sm={23}>
+          <Panel header={props.item.displayName} collapsible bordered>
+            {/* <Button
             color={'red'}
             onClick={() =>
               dispatch(deleteItem({kind: ActionKinds.Delete, itemBlobName: props.item.blobName}))
@@ -49,16 +66,12 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
           >
             Delete
           </Button> */}
-          <p>hai</p>
-          <p>hai</p>
-          <p>hai</p>
-          <p>hai</p>
-          <p>hai</p>
-          <p>hai</p>
-          <p>hai</p>
-        </Panel>
-      </FlexboxGrid.Item>
-    </FlexboxGrid>
+
+            {itemImage}
+          </Panel>
+        </Col>
+      </Row>
+    </Grid>
     // <FlexboxGrid justify="space-between">
     //   <FlexboxGrid.Item colspan={5}>{props.item.displayName}</FlexboxGrid.Item>
     //   <FlexboxGrid.Item colspan={4}>
