@@ -6,13 +6,15 @@
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
+    "debug": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "npm run lint.eslint && npm run lint.prettier && npm run lint.types",
     "lint.eslint": "eslint . --ext ts",
     "lint.prettier": "prettier -c src/**/*.ts",
-    "lint.types": "tsc --noEmit"
+    "lint.types": "tsc --noEmit",
+    "test": "jest"
   },
   "keywords": [],
   "author": {
@@ -23,6 +25,31 @@
   "config": {
     "forge": "./forge.config.js"
   },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/tests"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "jsx",
+      "tsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      "^src(.*)$": "<rootDir>/src$1"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.+(ts|tsx|js)",
+      "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+  },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.59",
     "@electron-forge/maker-deb": "^6.0.0-beta.59",
@@ -30,6 +57,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
     "@electron-forge/maker-zip": "^6.0.0-beta.59",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.59",
+    "@types/jest": "^26.0.24",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
@@ -43,20 +71,30 @@
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.13",
+    "jest": "^27.0.6",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
     "node-loader": "^2.0.0",
     "prettier": "^2.3.2",
     "style-loader": "^3.2.1",
+    "ts-jest": "^27.0.4",
     "ts-loader": "^9.2.4",
     "typescript": "^4.3.5"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.6.0",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@types/lodash": "^4.14.172",
     "cpy": "^8.1.2",
     "dotenv": "^10.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4"
+    "react-redux": "^7.2.4",
+    "rsuite": "^4.10.2"
   }
 }

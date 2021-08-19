@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "module": "es6",
+    "lib": ["DOM", "ES2019"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -13,10 +14,9 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "paths": {
+      "src/*": ["src/*"],
       "*": ["node_modules/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

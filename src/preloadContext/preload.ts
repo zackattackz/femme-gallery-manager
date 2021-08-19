@@ -1,7 +1,7 @@
 // window.addEventListener()
 
 import {contextBridge} from 'electron';
-import IContextBridgeApi from '../rendererContext/types/IContextBridgeApi';
+import IContextBridgeApi from '../types/IContextBridgeApi';
 import GalleryApi from './data/GalleryApi';
 
 const contextBridgeApi: IContextBridgeApi = {
