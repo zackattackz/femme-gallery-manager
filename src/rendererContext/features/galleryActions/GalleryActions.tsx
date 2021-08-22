@@ -22,12 +22,12 @@ export default function GalleryActions(): JSX.Element {
   if (status === LoadingStatuses.IsSuccess) {
     return (
       <div>
-        <GalleryCollectionActions collection={ItemCollectionType.IsHero} />
-        <GalleryCollectionActions collection={ItemCollectionType.IsNotHero} />
+        <GalleryCollectionActions collectionType={ItemCollectionType.IsHero} />
+        <GalleryCollectionActions collectionType={ItemCollectionType.IsNotHero} />
         <ItemUploader />
       </div>
     );
   } else {
-    return <Loader size="lg" />;
+    return <Loader center size="lg" />;
   }
 }

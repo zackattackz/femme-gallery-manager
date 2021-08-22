@@ -2,17 +2,22 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {List} from 'rsuite';
 import {filterItemsByCollectionType, ItemCollectionType} from './galleryActionsHelpers';
-import {selectCurrentItems, repositionItems, refreshState} from './galleryActionsSlice';
+import {
+  selectCurrentItems,
+  repositionItems,
+  refreshState,
+  selectCurrentItemsByCollectionType,
+} from './galleryActionsSlice';
 import GalleryItemActions from './GalleryItemActions';
 
 interface GalleryCollectionActionsProps {
-  collection: ItemCollectionType;
+  collectionType: ItemCollectionType;
 }
 
 export default function GalleryCollectionActions(
   props: GalleryCollectionActionsProps
 ): JSX.Element {
-  const currentItems = useSelector(selectCurrentItems);
+  const currentItems = useSelector(selectCurrentItemsByCollectionType(props.collectionType));
   const dispatch = useDispatch();
   return (
     <List
@@ -24,11 +29,14 @@ export default function GalleryCollectionActions(
       // }}
       bordered
     >
-      {filterItemsByCollectionType(Object.values(currentItems), props.collection)
+      {currentItems
         .sort((a, b) => a.position - b.position)
         .map((item, index) => (
           <List.Item bordered key={item.blobName} index={index}>
-            <GalleryItemActions item={item}></GalleryItemActions>
+            <GalleryItemActions
+              item={item}
+              collectionLength={currentItems.length}
+            ></GalleryItemActions>
           </List.Item>
         ))}
     </List>

@@ -141,6 +141,16 @@ export const {renameItem, setPosition, setIsHero, deleteItem, repositionItems} =
 export const selectCurrentItems = (state: RootState) => state.galleryActions.currentItems;
 
 export const selectCurrentStatus = (state: RootState) => state.galleryActions.status;
+
+export const selectCurrentItemsByCollectionType =
+  (collectionType: ItemCollectionType) => (state: RootState) => {
+    switch (collectionType) {
+      case ItemCollectionType.IsHero:
+        return Object.values(state.galleryActions.currentItems).filter((item) => item.isHero);
+      case ItemCollectionType.IsNotHero:
+        return Object.values(state.galleryActions.currentItems).filter((item) => !item.isHero);
+    }
+  };
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 // export const incrementIfOdd =

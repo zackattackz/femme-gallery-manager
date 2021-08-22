@@ -14,12 +14,12 @@ export default function ItemUploader(): JSX.Element {
 
   return (
     <div className="modal-container">
-      <Button size="lg" onClick={open}>
+      <Button size="lg" color={'violet'} onClick={open}>
         Upload
       </Button>
       <Modal full show={shown} onHide={close}>
         <Modal.Header>
-          <Modal.Title>Modal Title</Modal.Title>
+          <Modal.Title>Upload an image</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>test</p>

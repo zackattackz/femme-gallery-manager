@@ -15,10 +15,12 @@ import {
 } from 'rsuite';
 import {ActionKinds} from 'src/types/GalleryActions';
 import {GalleryItem, isLocalGalleryItem} from 'src/types/GalleryItems';
-import {deleteItem, renameItem} from './galleryActionsSlice';
+import {ItemCollectionType} from './galleryActionsHelpers';
+import {deleteItem, renameItem, repositionItems} from './galleryActionsSlice';
 
 interface GalleryItemActionsProps {
   item: GalleryItem;
+  collectionLength: number;
 }
 
 export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.Element {
@@ -42,16 +44,25 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
     <Grid fluid>
       <Row>
         <Col sm={1}>
-          <Row>
-            <Button color={'cyan'} block size={'sm'} ripple={false}>
+          <Row style={{marginBottom: '5px'}}>
+            <Button
+              disabled={props.item.position === 0}
+              color={'cyan'}
+              block
+              size={'sm'}
+              ripple={false}
+            >
               <Icon icon="up" />
             </Button>
           </Row>
           <Row>
-            <Input type={'text'}></Input>
-          </Row>
-          <Row>
-            <Button color={'cyan'} block size={'sm'} ripple={false}>
+            <Button
+              disabled={props.item.position === props.collectionLength - 1}
+              color={'cyan'}
+              block
+              size={'sm'}
+              ripple={false}
+            >
               <Icon icon="down" />
             </Button>
           </Row>
