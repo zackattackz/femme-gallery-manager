@@ -36,6 +36,7 @@ export default function GalleryCollectionActions(
             <GalleryItemActions
               item={item}
               collectionLength={currentItems.length}
+	      collectionType={props.collectionType}
             ></GalleryItemActions>
           </List.Item>
         ))}

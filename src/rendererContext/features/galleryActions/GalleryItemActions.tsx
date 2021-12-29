@@ -21,6 +21,7 @@ import {deleteItem, renameItem, repositionItems} from './galleryActionsSlice';
 interface GalleryItemActionsProps {
   item: GalleryItem;
   collectionLength: number;
+  collectionType: ItemCollectionType;
 }
 
 export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.Element {
@@ -51,6 +52,9 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
               block
               size={'sm'}
               ripple={false}
+	      onClick={() => 
+	        dispatch(repositionItems({newIndex: props.item.position-1 , oldIndex: props.item.position, collection: props.collectionType}))
+	      }
             >
               <Icon icon="up" />
             </Button>
@@ -62,6 +66,9 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
               block
               size={'sm'}
               ripple={false}
+	      onClick={() => 
+	        dispatch(repositionItems({newIndex: props.item.position+1 , oldIndex: props.item.position, collection: props.collectionType}))
+	      }
             >
               <Icon icon="down" />
             </Button>
@@ -69,14 +76,14 @@ export default function GalleryItemActions(props: GalleryItemActionsProps): JSX.
         </Col>
         <Col sm={23}>
           <Panel header={props.item.displayName} collapsible bordered>
-            {/* <Button
+            { <Button
             color={'red'}
             onClick={() =>
               dispatch(deleteItem({kind: ActionKinds.Delete, itemBlobName: props.item.blobName}))
             }
           >
             Delete
-          </Button> */}
+          </Button> }
 
             {itemImage}
           </Panel>
